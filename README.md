@@ -44,5 +44,21 @@ To run this project locally on your machine, follow these steps:
 
 This application operates entirely on the client side. The data for the different election processes (US, India, UK) is stored locally within the `src/data/electionData.js` file. The Chat Assistant utilizes a lightweight, custom keyword-matching algorithm (`src/utils/chatLogic.js`) to parse user queries, strip out stop-words, and score the remaining keywords against the timeline descriptions and FAQ data to provide relevant, immediate answers.
 
+## Deployment to Google Cloud Run ☁️
+
+To deploy this application to Google Cloud Run and generate a public URL to share, follow these steps:
+
+1. **Prerequisites:** Ensure you have the [Google Cloud CLI (`gcloud`)](https://cloud.google.com/sdk/docs/install) installed and initialized on your machine. You must also have a Google Cloud Project with billing enabled.
+2. **Authenticate:**
+   ```bash
+   gcloud auth login
+   ```
+3. **Deploy:** Run the following command from the root of your project directory. This will automatically build the container using the provided `Dockerfile` and deploy it to Cloud Run.
+   ```bash
+   gcloud run deploy election-process-education --source . --platform managed --allow-unauthenticated
+   ```
+4. **Follow Prompts:** The CLI will ask you to select a region (e.g., `us-central1`).
+5. **Get Your URL:** Once the deployment finishes, the terminal will output a **Service URL** (e.g., `https://election-process-education-xxxxx-uc.a.run.app`). This is your public, live Cloud Run URL that you can share with anyone!
+
 ## License 📄
 This project is open-source and available for educational purposes.
